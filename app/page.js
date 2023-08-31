@@ -14,7 +14,7 @@ export default function Home() {            // creacion de estados por useState 
   const [forecast, setforecast] = useState({});
   const [highlights, sethighligts] = useState({});
   const [error, setError] = useState(null); 
-  const isMobile = window.innerWidth <= 768;
+  const [isMobile, setIsMobile] = useState(false);
   const fetchWeather = (e) => {
     e.preventDefault();
     setError(null); 
@@ -50,6 +50,17 @@ export default function Home() {            // creacion de estados por useState 
       .finally(() => {
       });
   };
+  useEffect(() => {
+    const checkWindowSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkWindowSize();
+    window.addEventListener('resize', checkWindowSize);
+    return () => {
+      window.removeEventListener('resize', checkWindowSize);
+    };
+  }, []);
+
 
   return (
     <main className="flex min-h-screen justify-around   ">
