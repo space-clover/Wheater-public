@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
 import Weather from '../Components/Wheater' ; // 
 import Forecast from '../Components/Forecast';
@@ -14,13 +14,13 @@ export default function Home() {            // creacion de estados por useState 
   const [forecast, setforecast] = useState({});
   const [highlights, sethighligts] = useState({});
   const [error, setError] = useState(null); 
-
+  const isMobile = window.innerWidth <= 768;
   const fetchWeather = (e) => {
     e.preventDefault();
     setError(null); 
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=`; // agregar api key de open wheater en el fetch
-    const urlcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=`; // add openwheatermap apikey into the fetch 
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=78eba3d16b44ba235628ac761a8e41a8 `; 
+    const urlcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=78eba3d16b44ba235628ac761a8e41a8`; 
     
     axios.get(urlcast).then((response) => {
       setforecast(response.data);
@@ -53,7 +53,7 @@ export default function Home() {            // creacion de estados por useState 
 
   return (
     <main className="flex min-h-screen justify-around   ">
-      <section className='w-1/3 flex flex-col bg-color1 py-4  rounded-r-3xl border-color2 border-dashed px-10'>
+      <section className='lg:w-1/3 w-full flex flex-col bg-color1 py-4  rounded-r-3xl border-color2 border-dashed px-10'>
           <form onSubmit={fetchWeather} className="p-2 flex border-color3 border border-opacity-25 rounded-xl">
               <div className="bg-none">
                 <input
@@ -65,15 +65,19 @@ export default function Home() {            // creacion de estados por useState 
               </div>
               <button type="submit"> <FontAwesomeIcon className='opacity-60' icon={faSearch} />  </button>
           </form>
-        {weather.main && <Weather data={weather} />}
-        {error && <p className= " absolute text-red-500 text-4xl font-bold  left-1/2 bottom-16">{error}</p>} {/* Mostrar el mensaje de error */}
+        <div>
+          {weather.main && <Weather data={weather} />}
+          {forecast.list && isMobile && <Forecast data={forecast} />}
+          {highlights.main && isMobile && <Highlights data={highlights} />}
+          {error && <p className= " absolute text-red-500 text-4xl font-bold  left-1/2 bottom-16">{error}</p>} {/* Mostrar el mensaje de error */}
+        </div>
       </section>
-      <section className='w-3/4'>
+      <section id='seccion2' className='hidden lg:block w-3/4'>
         <div className='p-4 flex justify-end'> 
           <FontAwesomeIcon className='text-2xl text-color2 font-bold' icon={faTemperature2} /> 
         </div>
-        {forecast.list && <Forecast data={forecast} />}
-        {highlights.main && <Highlights data={highlights} />}
+        {forecast.list && !isMobile && <Forecast data={forecast} />}
+        {highlights.main && !isMobile && <Highlights data={highlights} />}
       </section>
         
     </main>

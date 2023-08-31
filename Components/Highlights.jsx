@@ -50,10 +50,10 @@ const Highlights = ({ data }) => {
             visibilityAdvice = "Visibility: Good.\nDrive relatively normally, follow traffic rules, and stay focused on the road.";
         }
     return(
-        <section className=" p-3 w-full ">
-            <h1 className="font-extrabold text-2xl text-color2" >Today Highlights</h1>
+        <section className="  py-3 lg:p-3 w-full ">
+            <h1 className="font-extrabold text-center  text-2xl text-color2" >Today Highlights</h1>
             <ul className="flex w-full flex-wrap justify-around p-6">
-                <li className=" bg-color1 w-60 h-48 flex flex-col justify-around p-4 m-2 rounded-xl" >
+                <li className=" bg-color1 w-full  lg:w-60 h-48 flex flex-col justify-around p-4 m-2 rounded-xl" >
                     <h1 className=" text-lg text-color3 font-semibold opacity-60" >Wind Speed</h1>
                     <p className="flex text-5xl text-color3 font-bold  items-baseline " >{data.wind.speed} <p className="text-xl ">km/h</p> </p> 
                     <p className="flex text-sm  font-bold items-baseline text-center text-color2 " > <p className="">deg direction</p><p className="text-lg text-color1">-</p> {data.wind.deg}° <FontAwesomeIcon className=' ml-1 text-xl text-color2 font-bold self-center' icon={faCompass} />  </p> 

@@ -50,9 +50,9 @@ if (climate === 'Clear') {
                 </div>
                 <p className="text-6xl text-color3 text-left"> {data.main.temp.toFixed(1)}°C  </p>
                 <p className="text-2xl text-color2 text-left font-bold"> {climate} </p>
-                <p className="text-xl text-color3 text-left font-semibold  mt-24 flex  "> feels like: <p className="text-color1"> - </p> <p className="text-color2 font-bold"> {data.main.feels_like} </p> </p>
-                <p className="text-xl text-color3 text-left font-semibold  mt-2 flex  "> Wind Speed <p className="text-color1"> - </p> <p className="text-color2 font-bold"> {data.wind.speed} m/s </p> </p>
-                <p className="text-5xl text-color3 text-center font-semibold  mt-16   "> {data.name}</p>
+                <p className="hidden text-xl text-color3 text-left font-semibold  mt-24 lg:flex  "> feels like: <p className="text-color1"> - </p> <p className="text-color2 font-bold"> {data.main.feels_like} </p> </p>
+                <p className="hidden text-xl text-color3 text-left font-semibold  mt-2 lg:flex  "> Wind Speed <p className="text-color1"> - </p> <p className="text-color2 font-bold"> {data.wind.speed} m/s </p> </p>
+                <p className="hidden lg:block text-5xl text-color3 text-center font-semibold lg:mt-16   "> {data.name}</p>
             </div>
     );
 };
